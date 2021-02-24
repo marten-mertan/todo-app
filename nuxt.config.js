@@ -36,7 +36,7 @@ module.exports = {
         htmlAttrs: {
             lang: 'ru',
         },
-        title: 'Шаблон Nuxt проекта',
+        title: 'Todo App',
         meta: [
             {charset: 'utf-8'},
             {
@@ -147,6 +147,7 @@ module.exports = {
      * В настройках роутера меняет классы для активных ссылок
      */
     router: {
+        base: '/todo-app/',
         linkActiveClass: 'is-active',
         linkExactActiveClass: 'is-exact',
     },
