@@ -7,12 +7,14 @@
                       :todo="todo" 
             />
         </transition-group>
-        <div v-if="!allTodos.length"
-             class="todos__empty">
-            О, нет! Ваш список дел пуст! 
-            <br> 
-            Скорее добавьте в него что-нибудь!
-        </div>
+        <client-only>
+            <div v-if="!allTodos.length" 
+                 class="todos__empty">
+                О, нет! Ваш список дел пуст! 
+                <br> 
+                Скорее добавьте в него что-нибудь!
+            </div>
+        </client-only>
     </div>
 </template>
 
@@ -28,7 +30,7 @@
             AddTodo
         },
         computed: {
-            ...mapGetters('todo', ['allTodos']),
+            ...mapGetters('todo', ['allTodos'])
         },
         created() {
             if (process.browser) {
