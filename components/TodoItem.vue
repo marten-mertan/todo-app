@@ -2,8 +2,7 @@
     <div :class="{'_completed':todo.completed}"
          class="todos-item"
          @click="toggleTodo(todo)">
-        <div :class="{'_completed':todo.completed}"
-             class="todos-item__check">
+        <div class="todos-item__check">
             
         </div>
         <div class="todos-item__text">
@@ -12,7 +11,7 @@
         <div class="todos-item__delete"
              @click="removeTodo(todo)">
             <svg class="icon-trash">
-                <use xlink:href="./icons/all.svg#icon-trash" />
+                <use xlink:href="../assets/icons/all.svg#icon-trash" />
             </svg>
         </div>
 
@@ -48,10 +47,19 @@
         align-items: center;
         padding: 10px;
         border-bottom: 1px solid #e0e0e0;
+        overflow: hidden;
+        max-height: 381px;
         cursor: pointer;
 
         &._completed {
-            text-decoration: line-through;
+            .todos-item__check {
+                background: #d1a5fe;
+            }
+
+            .todos-item__text {
+                color: #d3d3d3;
+                text-decoration-color: #d3d3d3;
+            }
         }
 
         &__check {
@@ -63,14 +71,16 @@
             margin-right: 12px;
             border: 2px solid #9098bc;
             border-radius: 50%;
-
-            &._completed {
-                background: #d1a5fe;
-            }
+            transition: all .2s ease;
         }
 
         &__text {
             color: #9098bc;
+            text-decoration: line-through;
+            text-decoration-color: transparent;
+            max-height: 360px;
+            transition: all .2s ease;
+            overflow: hidden;
         }
 
         &__delete {
