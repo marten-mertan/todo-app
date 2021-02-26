@@ -7,6 +7,12 @@
                       :todo="todo" 
             />
         </transition-group>
+        <div v-if="!allTodos.length"
+             class="todos__empty">
+            О, нет! Ваш список дел пуст! 
+            <br> 
+            Скорее добавьте в него что-нибудь!
+        </div>
     </div>
 </template>
 
@@ -25,7 +31,9 @@
             ...mapGetters('todo', ['allTodos']),
         },
         created() {
-            this.fetchTodos();
+            if (process.browser) {
+                this.fetchTodos();
+            }
         },
         methods: {
             ...mapActions('todo', ['fetchTodos'])
@@ -35,22 +43,12 @@
 
 <style lang="scss">
     .todos {
-        //
-    }
-
-    .todo-fade-enter-active {
-        transition: opacity .3s ease-in-out, max-height .3s ease-in-out, padding-top .3s ease-in-out, padding-bottom .3s ease-in-out;
-    }
-
-    .todo-fade-leave-active {
-        transition: opacity .3s ease-in-out, max-height .3s ease-in-out, padding-top .6s ease-in-out, padding-bottom .6s ease-in-out;
-    }
-
-    .todo-fade-enter,
-    .todo-fade-leave-active {
-        max-height: 0;
-        padding-top: 0;
-        padding-bottom: 0;
-        opacity: 0;
+        &__empty {
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #9098bc;
+        }
     }
 </style>

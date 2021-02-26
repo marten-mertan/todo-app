@@ -89,5 +89,21 @@
             margin-left: auto;
             cursor: pointer;
         }
+
+        &.todo-fade-enter-active {
+            transition: opacity .3s ease-in-out, max-height .3s ease-in-out, padding-top .3s ease-in-out, padding-bottom .3s ease-in-out;
+        }
+
+        &.todo-fade-leave-active {
+            transition: opacity .3s ease-in-out, max-height .3s ease-in-out, padding-top .6s ease-in-out, padding-bottom .6s ease-in-out;
+        }
+
+        &.todo-fade-enter,
+        &.todo-fade-leave-active {
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            opacity: 0;
+        }
     }
 </style>

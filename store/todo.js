@@ -7,9 +7,13 @@ export const getters = {
 };
 
 export const actions = {
-    async fetchTodos({commit}) {
-        const response = await fetch('https://jsonplaceholder.typicode.com/todos');
-        const data = await response.json();
+    fetchTodos({commit}) {
+        // const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+        // const data = await response.json();
+        let data = JSON.parse(localStorage.getItem('state'));
+        if (!data) {
+            data = [];
+        }
         commit('setTodos', data);
     },
     async addTodo({commit}, title) {
@@ -45,12 +49,15 @@ export const mutations = {
     },
     addTodo(state, todo) {
         state.todos.unshift(todo);
+        localStorage.setItem('state', JSON.stringify(state.todos));
     },
     removeTodo(state, todo) {
         const indx = state.todos.findIndex(x => x.id === todo.id);
         state.todos.splice(indx, 1);
+        localStorage.setItem('state', JSON.stringify(state.todos));
     },
     toggleTodo(state, todo) {
         todo.completed = !todo.completed;
+        localStorage.setItem('state', JSON.stringify(state.todos));
     }
 };

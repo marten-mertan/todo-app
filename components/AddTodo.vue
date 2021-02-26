@@ -6,7 +6,7 @@
                    value="+">
             <textarea v-model="title" 
                       type="text" 
-                      placeholder="Add todo...">
+                      placeholder="Добавить пункт...">
             </textarea>
         </form>
     </div>
